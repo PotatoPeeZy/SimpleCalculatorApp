@@ -15,16 +15,58 @@ def numFunc(n):
     screen.insert(0, s)
 
 
+def dotFunc():
+    for i in screen.get():
+        if i == '.':
+            sd = False
+        else:
+            sd = True
+    if sd:
+        s = screen.get()
+        s = s + '.'
+        screen.delete(0, END)
+        screen.insert(0, s)
+
+
 def clrFunc():
     screen.delete(0, END)
 
 
 def bkscFunc():
     s = ''
-    for i in range(len(screen.get())-1):
+    for i in range(len(screen.get()) - 1):
         s = s + screen.get()[i]
     screen.delete(0, END)
     screen.insert(0, s)
+
+
+n1 = 0
+sign = '+'
+
+
+def operation(o):
+    global n1, sign
+
+    n1 = screen.get()
+    sign = o
+    screen.delete(0, END)
+
+
+def equalFunc():
+    global n1, sign
+    n2 = screen.get()
+    if sign == '+':
+        calc = float(n1) + float(n2)
+    if sign == '-':
+        calc = float(n1) - float(n2)
+    if sign == '*':
+        calc = float(n1) * float(n2)
+    if sign == '/':
+        calc = float(n1) / float(n2)
+    screen.delete(0, END)
+    screen.insert(0, str(calc))
+    sign = '+'
+    n1 = 0
 
 
 button1 = Button(w, text='1', width=10, height=3, bg='pink', borderwidth=6, command=lambda: numFunc(1))
@@ -47,19 +89,19 @@ button9 = Button(w, text='9', width=10, height=3, bg='pink', borderwidth=6, comm
 button9.grid(row=2, column=2)
 button0 = Button(w, text='0', width=10, height=3, bg='pink', borderwidth=6, command=lambda: numFunc(0))
 button0.grid(row=5, column=1)
-buttonDot = Button(w, text='.', width=10, height=3, bg='pink', borderwidth=6, command=lambda: numFunc('.'))
+buttonDot = Button(w, text='.', width=10, height=3, bg='pink', borderwidth=6, command=dotFunc)
 buttonDot.grid(row=5, column=0)
 buttonClr = Button(w, text='C', width=10, height=3, borderwidth=6, command=clrFunc)
 buttonClr.grid(row=5, column=2)
-buttonPlus = Button(w, text='+', width=10, height=3, bg='#66ffff', borderwidth=6)
+buttonPlus = Button(w, text='+', width=10, height=3, bg='#66ffff', borderwidth=6, command=lambda: operation('+'))
 buttonPlus.grid(row=2, column=3)
-buttonMinus = Button(w, text='-', width=10, height=3, bg='#66ffff', borderwidth=6)
+buttonMinus = Button(w, text='-', width=10, height=3, bg='#66ffff', borderwidth=6, command=lambda: operation('-'))
 buttonMinus.grid(row=3, column=3)
-buttonMul = Button(w, text='X', width=10, height=3, bg='#66ffff', borderwidth=6)
+buttonMul = Button(w, text='X', width=10, height=3, bg='#66ffff', borderwidth=6, command=lambda: operation('*'))
 buttonMul.grid(row=4, column=3)
-buttonDiv = Button(w, text='/', width=10, height=3, bg='#66ffff', borderwidth=6)
+buttonDiv = Button(w, text='/', width=10, height=3, bg='#66ffff', borderwidth=6, command=lambda: operation('/'))
 buttonDiv.grid(row=5, column=3)
-buttonEqual = Button(w, text='=', width=23, height=3, bg='black', fg='white', borderwidth=6)
+buttonEqual = Button(w, text='=', width=23, height=3, bg='black', fg='white', borderwidth=6, command=equalFunc)
 buttonEqual.grid(row=6, column=2, columnspan=2)
 buttonBksc = Button(w, text='<--', width=23, height=3, bg='black', fg='white', borderwidth=6, command=bkscFunc)
 buttonBksc.grid(row=6, column=0, columnspan=2)
