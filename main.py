@@ -1,4 +1,5 @@
 from tkinter import *
+from math import *
 
 w = Tk()
 w.title('Pomato_PeeZy Calculator')
@@ -13,7 +14,10 @@ def numFunc(n):
     s = s + str(n)
     screen.delete(0, END)
     screen.insert(0, s)
-
+def rootFunc():
+    s = screen.get()
+    screen.delete(0, END)
+    screen.insert(0,sqrt(float(s)))
 
 def dotFunc():
     for i in screen.get():
@@ -101,8 +105,10 @@ buttonMul = Button(w, text='X', width=10, height=3, bg='#66ffff', borderwidth=6,
 buttonMul.grid(row=4, column=3)
 buttonDiv = Button(w, text='/', width=10, height=3, bg='#66ffff', borderwidth=6, command=lambda: operation('/'))
 buttonDiv.grid(row=5, column=3)
-buttonEqual = Button(w, text='=', width=23, height=3, bg='black', fg='white', borderwidth=6, command=equalFunc)
-buttonEqual.grid(row=6, column=2, columnspan=2)
-buttonBksc = Button(w, text='<--', width=23, height=3, bg='black', fg='white', borderwidth=6, command=bkscFunc)
-buttonBksc.grid(row=6, column=0, columnspan=2)
+buttonEqual = Button(w, text='=', width=23, height=3, bg='grey', fg='black', borderwidth=6, command=equalFunc)
+buttonEqual.grid(row=6, column=1, columnspan = 2)
+buttonBksc = Button(w, text='<--', width=10, height=3, bg='grey', fg='black', borderwidth=6, command=bkscFunc)
+buttonBksc.grid(row=6, column=0 )
+buttonRoot = Button(w, text= 'R',width = 10, height = 3, bg = '#66ffff',borderwidth = 6,command = rootFunc)
+buttonRoot.grid(row = 6,column = 3)
 w.mainloop()
