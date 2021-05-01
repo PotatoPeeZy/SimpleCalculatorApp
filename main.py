@@ -1,3 +1,4 @@
+import math
 from tkinter import *
 from math import *
 
@@ -9,15 +10,22 @@ screen = Entry(w, width=20, borderwidth=6, font=('arial', 25))
 screen.grid(row=1, column=0, columnspan=4)
 
 
+def degToRad(a):
+    return a * (pi / 180)
+
+
 def numFunc(n):
     s = screen.get()
     s = s + str(n)
     screen.delete(0, END)
     screen.insert(0, s)
+
+
 def rootFunc():
     s = screen.get()
     screen.delete(0, END)
-    screen.insert(0,sqrt(float(s)))
+    screen.insert(0, sqrt(float(s)))
+
 
 def dotFunc():
     for i in screen.get():
@@ -42,6 +50,24 @@ def bkscFunc():
         s = s + screen.get()[i]
     screen.delete(0, END)
     screen.insert(0, s)
+
+
+def sinFunc():
+    s = screen.get()
+    screen.delete(0, END)
+    screen.insert(0, sin(degToRad(float(s))))
+
+
+def cosFunc():
+    s = screen.get()
+    screen.delete(0, END)
+    screen.insert(0, cos(degToRad(float(s))))
+
+
+def tanFunc():
+    s = screen.get()
+    screen.delete(0, END)
+    screen.insert(0, tan(degToRad(float(s))))
 
 
 n1 = 0
@@ -105,10 +131,16 @@ buttonMul = Button(w, text='X', width=10, height=3, bg='#66ffff', borderwidth=6,
 buttonMul.grid(row=4, column=3)
 buttonDiv = Button(w, text='/', width=10, height=3, bg='#66ffff', borderwidth=6, command=lambda: operation('/'))
 buttonDiv.grid(row=5, column=3)
-buttonEqual = Button(w, text='=', width=23, height=3, bg='#8BA7A8', fg='black', borderwidth=6, command=equalFunc)
-buttonEqual.grid(row=6, column=1, columnspan = 2)
-buttonBksc = Button(w, text='<--', width=10, height=3, bg='#8BA7A8', fg='black', borderwidth=6, command=bkscFunc)
-buttonBksc.grid(row=6, column=0 )
-buttonRoot = Button(w, text= 'R',width = 10, height = 3, bg = '#66ffff',borderwidth = 6,command = rootFunc)
-buttonRoot.grid(row = 6,column = 3)
+buttonEqual = Button(w, text='=', width=23, height=3, bg='#d9d9d9', fg='black', borderwidth=6, command=equalFunc)
+buttonEqual.grid(row=7, column=2, columnspan=2)
+buttonBksc = Button(w, text='<--', width=23, height=3, bg='#d9d9d9', fg='black', borderwidth=6, command=bkscFunc)
+buttonBksc.grid(row=7, column=0, columnspan=2)
+buttonRoot = Button(w, text='√', width=10, height=3, bg='#66ffff', borderwidth=6, command=rootFunc)
+buttonRoot.grid(row=6, column=3)
+buttonSin = Button(w, text='Sin()', width=10, height=3, bg='#66ffff', borderwidth=6, command=sinFunc)
+buttonSin.grid(row=6, column=0)
+buttonCos = Button(w, text='Cos()', width=10, height=3, bg='#66ffff', borderwidth=6, command=cosFunc)
+buttonCos.grid(row=6, column=1)
+buttonTan = Button(w, text='Tan()', width=10, height=3, bg='#66ffff', borderwidth=6, command=tanFunc)
+buttonTan.grid(row=6, column=2)
 w.mainloop()
