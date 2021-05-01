@@ -5,9 +5,18 @@ from math import *
 w = Tk()
 w.title('Pomato_PeeZy Calculator')
 text = Label(w, text='Pomato_PeeZy Calculator', font=('comic sans MS', 20))
-text.grid(row=0, column=0, columnspan=4)
+text.grid(row=0, column=0, columnspan=3)
 screen = Entry(w, width=20, borderwidth=6, font=('arial', 25))
 screen.grid(row=1, column=0, columnspan=4)
+
+
+def openWindow():
+    w2 = Toplevel(w)
+    w2.title('Credits')
+    c1 = Label(w2, text='Senior Developer: MD Nazmul Hossain Shishir')
+    c1.grid(row=0, column=0)
+    c2 = Label(w2, text='Junior Developer: Tuba Takowa')
+    c2.grid(row=1, column=0)
 
 
 def degToRad(a):
@@ -143,4 +152,7 @@ buttonCos = Button(w, text='Cos()', width=10, height=3, bg='#66ffff', borderwidt
 buttonCos.grid(row=6, column=1)
 buttonTan = Button(w, text='Tan()', width=10, height=3, bg='#66ffff', borderwidth=6, command=tanFunc)
 buttonTan.grid(row=6, column=2)
+buttonCredits = Button(w, text='Credits', width=5, height=1, command=openWindow)
+buttonCredits.grid(row=0, column=3)
+
 w.mainloop()
